@@ -9,7 +9,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 export class AppComponent {
   public title = 'Minhas Tarefas';
-
+  public mode = 'list';
   public todos: Todo[] = [];
   public form: FormGroup;
 
@@ -61,6 +61,7 @@ export class AppComponent {
   save() {
     const data = JSON.stringify(this.todos);
     localStorage.setItem('todos', data);
+    this.mode = 'list';
   }
 
   load() {
@@ -70,5 +71,9 @@ export class AppComponent {
       this.todos = data;
     else
       this.todos = [];
+  }
+
+  changeMode(mode: string) {
+    this.mode = mode;
   }
 }
